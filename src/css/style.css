@@ -1,0 +1,176 @@
+/* Primary colors */
+:root {
+  --grey: #696969;
+  --black: #000;
+  --milky: #f6f6f6;
+}
+
+/* Primary colors */
+
+/* Global Styling */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+body {
+  background: var(--black);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.hide {
+  display: none;
+}
+
+main {
+  min-width: 100vw;
+  min-height: 100vh;
+  background: var(--milky);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.todo-container {
+  width: 38%;
+  min-width: 350px;
+  box-shadow: 0 1px 5px 0.1px var(--grey);
+  background: white;
+}
+
+.todo-header h1 {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.todo-header,
+.enter-todo,
+.todo-entry {
+  display: flex;
+  margin: 0 20px;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.todo-container .todo-header {
+  justify-content: space-between;
+}
+
+/* Style enter-do placecholder */
+#enter-todo::-webkit-input-placeholder {
+  font-style: italic;
+}
+
+#enter-todo::-moz-placeholder {
+  font-style: italic;
+}
+
+#enter-todo:-moz-placeholder {
+  font-style: italic;
+}
+
+#enter-todo:-ms-input-placeholder {
+  font-style: italic;
+}
+
+/* Style enter-do placecholder */
+
+.todo-container input {
+  border: none;
+
+  /* color: #000; */
+}
+
+.todo-container input:focus {
+  outline: none;
+
+  /* color: red; */
+}
+
+.todo-container input[type="text"] {
+  flex-grow: 1;
+}
+
+.todo-container input[type="checkbox"] {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.todo-container .divide {
+  border: none;
+  height: 0.2px;
+  background: #c0c0c0;
+}
+
+/* Handle input text dynamics */
+.highlight-input {
+  background: #fffeca;
+  margin: 0;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.highlight-input input:focus {
+  background: #fffeca;
+}
+
+.todo-container :checked + input {
+  text-decoration: line-through;
+  color: #c0c0c0;
+}
+
+.todo-container :checked + input:focus {
+  text-decoration: initial;
+  color: initial;
+}
+
+/* Handle input text dynamics */
+
+.enter {
+  height: 10px;
+  font-size: 14px;
+  color: #c0c0c0;
+  cursor: pointer;
+}
+
+#refresh {
+  font-size: 13px;
+  cursor: pointer;
+  color: #c0c0c0;
+}
+
+.delete {
+  color: #c0c0c0;
+  cursor: pointer;
+}
+
+.reorder {
+  font-size: 16px;
+  color: #c0c0c0;
+  cursor: move;
+}
+
+.enter:hover,
+#refresh:hover,
+.reorder:hover,
+.delete:hover {
+  color: var(--grey);
+}
+
+#clear-completed {
+  width: 100%;
+  padding: 15px;
+  cursor: pointer;
+  background: var(--milky);
+}
+
+#clear-completed:hover {
+  font-weight: 600;
+}
