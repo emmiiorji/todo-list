@@ -4,16 +4,23 @@ import tasks from './tasks.js';
 class TaskManager {
   constructor() {
     this.enterTodo = document.getElementById('enter-todo');
+    this.data = null;
   }
 
-  addTask(e) {
+  addTask(value) {
     const task = {
-      description: e.target.value,
+      description: value,
       completed: false,
-      index: tasks.todoData.length + 1,
+      // index: tasks.todoData.length + 1,
     };
     tasks.todoData = this.writeLocalCollection(tasks.storageKey, task);
-    console.log(tasks.todoData);
+  }
+
+  deleteTask(taskIndex) {
+    const taskToDelete = tasks.todoData[taskIndex];
+    tasks.todoData = tasks.todoData.filter((data, index) => index !== taskIndex);
+    this.writeLocalCollection(tasks.storageKey, tasks.todoData, false);
+    return taskToDelete;
   }
 
   setValue(element, value = '') {
@@ -26,9 +33,15 @@ class TaskManager {
     return this.data;
   }
 
-  writeLocalCollection(key, item) {
-    const existingData = this.readLocalCollection(key);
-    existingData.push(item);
+  writeLocalCollection(key, item, single = true) { // When single is false, do a replace
+    let existingData;
+    if (single) {
+      existingData = this.readLocalCollection(key);
+      existingData.push(item);
+    } else {
+      existingData = item;
+    }
+
     localStorage.setItem(key, JSON.stringify(existingData));
     return existingData;
   }

@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-cycle
 import taskManager from './taskManager.js';
 
 class Tasks {

@@ -113,6 +113,7 @@ main {
 
 .todo-container input[type="checkbox"] {
   margin-right: 10px;
+  cursor: pointer;
 }
 
 .todo-container .divide {
@@ -121,10 +122,7 @@ main {
   background: #c0c0c0;
 }
 
-/* .todo-item:last-child {
-  background: yellow;
-} */
-
+/* Handle input text dynamics */
 .highlight-input {
   background: #fffeca;
   margin: 0;
@@ -132,11 +130,20 @@ main {
   padding-right: 20px;
 }
 
-.highlight-input input:focus{
+.highlight-input input:focus {
   background: #fffeca;
-  /* margin: 0; */
-  /* padding: 20px; */
 }
+
+.todo-container :checked + input {
+  text-decoration: line-through;
+  color: #c0c0c0;
+}
+
+.todo-container :checked + input:focus {
+  text-decoration: initial;
+  color: initial;
+}
+/* Handle input text dynamics */
 
 .enter {
   height: 10px;
@@ -174,4 +181,7 @@ main {
   padding: 15px;
   cursor: pointer;
   background: var(--milky);
+}
+#clear-completed:hover {
+  font-weight: 600;
 }

@@ -6,11 +6,11 @@ const markupAllLists = () => {
   let allLists = '';
   tasks.todoData.forEach((data, index) => {
     allLists += `<li class="todo-item">
-                    <div class="todo-entry" id=entry_${index + 1}>
-                      <input type="checkbox" ${data.completed ? 'checked' : ''} status' title="Check!">
+                    <div class="todo-entry" id=entry_${index}>
+                      <input type="checkbox" ${data.completed ? 'checked' : ''} class="status" title="Check!">
                       <input type="text" class="todo" value="${data.description}">
-                      <i class="fa-solid fa-trash-can delete hide"></i>
-                      <i class="fa-solid fa-ellipsis-vertical reorder"></i>
+                      <i class="fa-solid fa-trash-can delete hide" title="Delete entry"></i>
+                      <i class="fa-solid fa-ellipsis-vertical reorder" title="Move"></i>
                     </div>
                     <hr class="divide">
                   </li>`;
@@ -26,23 +26,16 @@ const renderLists = () => {
 renderLists();
 
 // Declarations partaining to list items must come after rendering lists
-const enterTodo = document.getElementById('enter-todo');
-const enterBu = document.querySelector('.enter');
+
 // const todoEntry = document.querySelectorAll('.todo-entry');
-const deleteButtons = document.querySelectorAll('.delete');
 const reorderButtons = document.querySelectorAll('.reorder');
 const refreshButton = document.getElementById('reorder');
-const descInput = document.querySelectorAll('.todo');
+const status = document.querySelectorAll('.status');
+const clearCompleted = document.getElementById('clear-completed');
 
-const addEventListeners = () => {
-  enterTodo.addEventListener('keyup', (e) => {
-    if (e.key === 'Enter' && e.target.value.trim() !== '') {
-      taskManager.addTask(e);
-
-      renderLists();
-      taskManager.setValue(e.target, '');
-    }
-  });
+const addRefreshingListeners = () => {
+  const descInput = document.querySelectorAll('.todo');
+  const deleteButtons = document.querySelectorAll('.delete');
 
   descInput.forEach((element) => {
     ['focus', 'blur'].forEach((evt) => {
@@ -52,6 +45,37 @@ const addEventListeners = () => {
         todoEntry.querySelector('.delete').classList.toggle('hide');
         todoEntry.querySelector('.reorder').classList.toggle('hide');
       });
+    });
+  });
+
+  deleteButtons.forEach((deleteButton) => {
+    deleteButton.addEventListener('mousedown', (e) => {
+      const taskIndex = Number(e.target.parentNode.id.split('_')[1]);
+      taskManager.deleteTask(taskIndex);
+      renderLists();
+      addRefreshingListeners();
+    });
+  });
+};
+
+addRefreshingListeners();
+
+const addEventListeners = () => {
+  const enterTodo = document.getElementById('enter-todo');
+  const enterBu = document.querySelector('.enter');
+
+  // Save todo events. Clicking enter icon or pressing enter key saves an entry
+  const eventPairs = { keyup: enterTodo, click: enterBu };
+  Object.entries(eventPairs).forEach(([evt, element]) => {
+    element.addEventListener(evt, (e) => {
+      if (enterTodo.value.trim() !== '') {
+        if (evt === 'keyup' && !(e.key === 'Enter')) return;
+
+        taskManager.addTask(enterTodo.value);
+        renderLists();
+        addRefreshingListeners();
+        taskManager.setValue(enterTodo, '');
+      }
     });
   });
 };
