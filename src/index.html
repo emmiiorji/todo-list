@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Material icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Fontawesome -->
+  <script src="https://kit.fontawesome.com/83eb6c852a.js" crossorigin="anonymous"></script>
+
+  <title>My Todo List</title>
+</head>
+<body>
+  <main>
+    <article class="todo-container">
+      <header class="todo-header">
+        <h1>Today's To Do</h1>
+        <i class="fa-solid fa-rotate" id="refresh" title="Refresh"></i>
+      </header>
+
+      <hr class="divide">
+
+      <div class="enter-todo">
+        <input type="text" id="enter-todo" placeholder="Add to your list...">
+        <span class="material-icons enter" title="Click this or press enter to submit">keyboard_return</span> 
+      </div>
+
+      <hr class="divide">
+      
+      <ul id="todo-collection"></ul>
+      
+      <input type="button" id="clear-completed" value="Clear all Completed">
+    </article>
+  </main>
+</body>
+</html>
