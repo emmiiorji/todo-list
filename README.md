@@ -26,8 +26,8 @@ To get a local copy up and running follow these simple example steps.
 ## Prerequisites
 
 - A modern browser e.g [Google Chrome](https://www.google.com/chrome/)
-- Have git installed.[Link to download git](https://git-scm.com/downloads)
-- Have the LTS version of Node.js installed.[Link to download Node.js](https://nodejs.org/en/download/)
+- Have [git](https://git-scm.com/downloads) installed.
+- Have the LTS version of [Node.js](https://nodejs.org/en/download/) installed.
 
 ## Setup
 
