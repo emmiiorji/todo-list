@@ -3,10 +3,8 @@
   --grey: #696969;
   --black: #000;
   --milky: #f6f6f6;
-
-
-
 }
+
 /* Primary colors */
 
 /* Global Styling */
@@ -25,7 +23,9 @@ ul {
 body {
   background: var(--black);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
   /* color: var(--grey); */
+
   /* color: red; */
 }
 
@@ -45,8 +45,9 @@ main {
 .todo-container {
   width: 38%;
   min-width: 350px;
+
   /* min-height: 300px; */
-  box-shadow: 0px 1px 5px 0.1px var(--grey);
+  box-shadow: 0 1px 5px 0.1px var(--grey);
   background: white;
 }
 
@@ -66,6 +67,7 @@ main {
 
 .todo-container .todo-header {
   justify-content: space-between;
+
   /* margin-top: 10px; */
 }
 
@@ -79,26 +81,29 @@ main {
   font-style: italic;
 }
 
-#enter-todo:-moz-placeholder {
-  font-style: italic;  
-}
-
 #enter-todo::-moz-placeholder {
-  font-style: italic;  
+  font-style: italic;
 }
 
-#enter-todo:-ms-input-placeholder {  
-  font-style: italic; 
+#enter-todo:-moz-placeholder {
+  font-style: italic;
 }
+
+#enter-todo:-ms-input-placeholder {
+  font-style: italic;
+}
+
 /* Style enter-do placecholder */
 
 .todo-container input {
   border: none;
+
   /* color: #000; */
 }
 
 .todo-container input:focus {
   outline: none;
+
   /* color: red; */
 }
 
