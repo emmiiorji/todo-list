@@ -27,12 +27,6 @@ renderLists();
 
 // Declarations partaining to list items must come after rendering lists
 
-// const todoEntry = document.querySelectorAll('.todo-entry');
-const reorderButtons = document.querySelectorAll('.reorder');
-const refreshButton = document.getElementById('reorder');
-const status = document.querySelectorAll('.status');
-const clearCompleted = document.getElementById('clear-completed');
-
 const addRefreshingListeners = () => {
   const descInput = document.querySelectorAll('.todo');
   const deleteButtons = document.querySelectorAll('.delete');

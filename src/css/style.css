@@ -23,10 +23,6 @@ ul {
 body {
   background: var(--black);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
-  /* color: var(--grey); */
-
-  /* color: red; */
 }
 
 .hide {
@@ -45,8 +41,6 @@ main {
 .todo-container {
   width: 38%;
   min-width: 350px;
-
-  /* min-height: 300px; */
   box-shadow: 0 1px 5px 0.1px var(--grey);
   background: white;
 }
@@ -67,14 +61,7 @@ main {
 
 .todo-container .todo-header {
   justify-content: space-between;
-
-  /* margin-top: 10px; */
 }
-
-/* .todo-container .todo-entry,
-.todo-container .enter-todo {
-  padding: 10px 0;
-} */
 
 /* Style enter-do placecholder */
 #enter-todo::-webkit-input-placeholder {
@@ -143,6 +130,7 @@ main {
   text-decoration: initial;
   color: initial;
 }
+
 /* Handle input text dynamics */
 
 .enter {
@@ -182,6 +170,7 @@ main {
   cursor: pointer;
   background: var(--milky);
 }
+
 #clear-completed:hover {
   font-weight: 600;
 }
