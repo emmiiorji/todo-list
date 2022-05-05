@@ -38,12 +38,24 @@ const addRefreshingListeners = () => {
   const deleteButtons = document.querySelectorAll('.delete');
 
   descInput.forEach((element) => {
-    ['focus', 'blur'].forEach((evt) => {
+    ['focus', 'blur', 'keyup'].forEach((evt) => {
       element.addEventListener(evt, (e) => {
         const todoEntry = e.target.parentNode;
+
+        // Modify the looks
         todoEntry.classList.toggle('highlight-input');
         todoEntry.querySelector('.delete').classList.toggle('hide');
         todoEntry.querySelector('.reorder').classList.toggle('hide');
+
+        if (evt === 'blur' || (evt === 'keyup' && e.key === 'Enter')) {
+          // It's a modify
+          const taskIndex = Number(e.target.parentNode.id.split('_')[1]);
+          taskManager.modifyTask(e.target.value, taskIndex);
+          todoEntry.classList.remove('highlight-input');
+          todoEntry.querySelector('.delete').classList.add('hide');
+          todoEntry.querySelector('.reorder').classList.remove('hide');
+          e.target.blur();
+        }
       });
     });
   });
@@ -60,7 +72,7 @@ const addRefreshingListeners = () => {
 
 addRefreshingListeners();
 
-const addEventListeners = () => {
+const addOneTimeListeners = () => {
   const enterTodo = document.getElementById('enter-todo');
   const enterBu = document.querySelector('.enter');
 
@@ -80,4 +92,4 @@ const addEventListeners = () => {
   });
 };
 
-addEventListeners();
+addOneTimeListeners();

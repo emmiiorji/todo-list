@@ -23,6 +23,11 @@ class TaskManager {
     return taskToDelete;
   }
 
+  modifyTask(value, taskIndex) {
+    tasks.todoData[taskIndex].description = value;
+    this.writeLocalCollection(tasks.storageKey, tasks.todoData, false);
+  }
+
   setValue(element, value = '') {
     element.value = value;
     return this;
