@@ -1,34 +1,12 @@
 import '../css/style.css';
-
-const todoData = [
-  {
-    description: 'Wash the dishes',
-    completed: false,
-    index: 1,
-  },
-  {
-    description: 'Eat unripe plantain',
-    completed: true,
-    index: 3,
-  },
-  {
-    description: 'Complete te todo list project',
-    completed: false,
-    index: 2,
-  },
-  {
-    description: 'Post a blog',
-    completed: true,
-    index: 3,
-  },
-
-];
+import tasks from './tasks.js';
+import taskManager from './taskManager.js';
 
 const markupAllLists = () => {
   let allLists = '';
-  todoData.forEach((data) => {
+  tasks.todoData.forEach((data, index) => {
     allLists += `<li class="todo-item">
-                    <div class="todo-entry">
+                    <div class="todo-entry" id=entry_${index+1}>
                       <input type="checkbox" ${data.completed ? 'checked' : ''} status' title="Check!">
                       <input type="text" class="todo" value="${data.description}">
                       <i class="fa-solid fa-trash-can delete hide"></i>
@@ -46,3 +24,24 @@ const renderLists = () => {
 };
 
 renderLists();
+
+// Declarations partaining to list items must come after rendering lists
+const enterTodo = document.getElementById('enter-todo');
+const enterBu = document.querySelector('.enter');
+const deleteButtons = document.querySelectorAll('.delete');
+const reorderButtons = document.querySelectorAll('.reorder');
+const refreshButton = document.getElementById('reorder');
+const descInput = document.querySelectorAll('.todo');
+
+const addEventListeners = () => {
+  enterTodo.addEventListener('keyup', (e) => {
+    if (e.key === 'Enter' && e.target.value.trim() !== '') {
+      taskManager.addTask(e);
+
+      renderLists();
+      taskManager.setValue(e.target, '');
+    }
+  });
+};
+
+addEventListeners();
