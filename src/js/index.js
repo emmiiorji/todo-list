@@ -6,7 +6,7 @@ const markupAllLists = () => {
   let allLists = '';
   tasks.todoData.forEach((data, index) => {
     allLists += `<li class="todo-item">
-                    <div class="todo-entry" id=entry_${index+1}>
+                    <div class="todo-entry" id=entry_${index + 1}>
                       <input type="checkbox" ${data.completed ? 'checked' : ''} status' title="Check!">
                       <input type="text" class="todo" value="${data.description}">
                       <i class="fa-solid fa-trash-can delete hide"></i>
@@ -28,6 +28,7 @@ renderLists();
 // Declarations partaining to list items must come after rendering lists
 const enterTodo = document.getElementById('enter-todo');
 const enterBu = document.querySelector('.enter');
+// const todoEntry = document.querySelectorAll('.todo-entry');
 const deleteButtons = document.querySelectorAll('.delete');
 const reorderButtons = document.querySelectorAll('.reorder');
 const refreshButton = document.getElementById('reorder');
@@ -41,6 +42,17 @@ const addEventListeners = () => {
       renderLists();
       taskManager.setValue(e.target, '');
     }
+  });
+
+  descInput.forEach((element) => {
+    ['focus', 'blur'].forEach((evt) => {
+      element.addEventListener(evt, (e) => {
+        const todoEntry = e.target.parentNode;
+        todoEntry.classList.toggle('highlight-input');
+        todoEntry.querySelector('.delete').classList.toggle('hide');
+        todoEntry.querySelector('.reorder').classList.toggle('hide');
+      });
+    });
   });
 };
 
