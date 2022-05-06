@@ -25,11 +25,14 @@ const renderLists = () => {
 
 renderLists();
 
-// Declarations partaining to list items must come after rendering lists
+// General declaration that re-rendering lists will not affect
+const enterTodo = document.getElementById('enter-todo');
+const enterBu = document.querySelector('.enter');
 
 const addRefreshingListeners = () => {
   const descInput = document.querySelectorAll('.todo');
   const deleteButtons = document.querySelectorAll('.delete');
+  const statuses = document.querySelectorAll('.status');
 
   descInput.forEach((element) => {
     ['focus', 'blur', 'keyup'].forEach((evt) => {
@@ -44,7 +47,7 @@ const addRefreshingListeners = () => {
         if (evt === 'blur' || (evt === 'keyup' && e.key === 'Enter')) {
           // It's a modify
           const taskIndex = Number(e.target.parentNode.id.split('_')[1]);
-          taskManager.modifyTask(e.target.value, taskIndex);
+          taskManager.modifyTask({ description: e.target.value }, taskIndex);
           todoEntry.classList.remove('highlight-input');
           todoEntry.querySelector('.delete').classList.add('hide');
           todoEntry.querySelector('.reorder').classList.remove('hide');
@@ -62,14 +65,18 @@ const addRefreshingListeners = () => {
       addRefreshingListeners();
     });
   });
+
+  statuses.forEach((status) => {
+    status.addEventListener('change', (e) => {
+      const taskIndex = Number(e.target.parentNode.id.split('_')[1]);
+      taskManager.modifyTask({ completed: e.target.checked }, taskIndex);
+    });
+  });
 };
 
 addRefreshingListeners();
 
 const addOneTimeListeners = () => {
-  const enterTodo = document.getElementById('enter-todo');
-  const enterBu = document.querySelector('.enter');
-
   // Save todo events. Clicking enter icon or pressing enter key saves an entry
   const eventPairs = { keyup: enterTodo, click: enterBu };
   Object.entries(eventPairs).forEach(([evt, element]) => {

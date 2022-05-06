@@ -23,14 +23,22 @@ class TaskManager {
     return taskToDelete;
   }
 
-  modifyTask(value, taskIndex) {
-    tasks.todoData[taskIndex].description = value;
+  modifyTask(taskObject, taskIndex) {
+    // To receive only the keys necessary to be changed
+    Object.entries(taskObject).forEach(([key, value]) => {
+      tasks.todoData[taskIndex][key] = value;
+    });
+    this.writeLocalCollection(tasks.storageKey, tasks.todoData, false);
+  }
+
+  clearCompletedTasks(taskIndexes) {
+    tasks.todoData = tasks.todoData.filter((task, index) => !taskIndexes.includes(index));
     this.writeLocalCollection(tasks.storageKey, tasks.todoData, false);
   }
 
   setValue(element, value = '') {
     element.value = value;
-    return this;
+    return this.undefined; // Return undefined as though there's no return statement
   }
 
   readLocalCollection(key) {
