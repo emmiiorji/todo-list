@@ -28,6 +28,8 @@ renderLists();
 // General declaration that re-rendering lists will not affect
 const enterTodo = document.getElementById('enter-todo');
 const enterBu = document.querySelector('.enter');
+const clearCompleted = document.getElementById('clear-completed');
+const refreshBu = document.getElementById('refresh');
 
 const addRefreshingListeners = () => {
   const descInput = document.querySelectorAll('.todo');
@@ -91,6 +93,23 @@ const addOneTimeListeners = () => {
       }
     });
   });
+
+  // Clear completed tasks
+  clearCompleted.addEventListener('click', () => {
+    const todoEntries = Array.from(document.querySelectorAll('.todo-entry'));
+    const completedTasks = todoEntries.filter((todoEntry) => todoEntry.querySelector('.status').checked);
+    const taskIndexes = completedTasks.map((completedTask) => Number(completedTask.id.split('_')[1]));
+    taskManager.clearCompletedTasks(taskIndexes);
+    renderLists();
+  });
+
+  refreshBu.onclick = (e) => {
+    e.target.classList.add('rotate');
+    setTimeout(() => {
+      e.target.classList.remove('rotate');
+    }, 500);
+    renderLists();
+  };
 };
 
 addOneTimeListeners();
