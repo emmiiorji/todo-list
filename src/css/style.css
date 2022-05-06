@@ -175,8 +175,7 @@ main {
   font-weight: 600;
 }
 
-.rotate
-{
+.rotate {
   transform: rotate(360deg);
   transition: transform 1s;
   -webkit-transform: rotate(360deg);
