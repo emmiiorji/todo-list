@@ -4,7 +4,9 @@ This project is a todo list that would allow a user manage a list of their tasks
 
 Here's how it looks:
 
-![screenshot](./src/assets/img/project-screenshot.jpg)
+<!-- ![screenshot](./src/assets/img/project-screenshot.jpg) -->
+https://user-images.githubusercontent.com/20554583/167466539-6bf7117c-1077-4840-8d68-a01b9cb5ef78.mp4
+
 
 
 ## Built With
@@ -14,9 +16,9 @@ Here's how it looks:
 - Javascript
 - Webpack
 
-<!-- ## Live Demo (if available) -->
+## Live Demo
 
-<!-- [Live Demo Link](https://emmiiorji.github.io/todo-list/) -->
+[Live Demo Link](https://emmiiorji.github.io/todo-list/)
 
 
 ## Getting Started
