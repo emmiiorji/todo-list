@@ -23,10 +23,6 @@ ul {
 body {
   background: var(--black);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
-  /* color: var(--grey); */
-
-  /* color: red; */
 }
 
 .hide {
@@ -45,8 +41,6 @@ main {
 .todo-container {
   width: 38%;
   min-width: 350px;
-
-  /* min-height: 300px; */
   box-shadow: 0 1px 5px 0.1px var(--grey);
   background: white;
 }
@@ -67,14 +61,7 @@ main {
 
 .todo-container .todo-header {
   justify-content: space-between;
-
-  /* margin-top: 10px; */
 }
-
-/* .todo-container .todo-entry,
-.todo-container .enter-todo {
-  padding: 10px 0;
-} */
 
 /* Style enter-do placecholder */
 #enter-todo::-webkit-input-placeholder {
@@ -113,6 +100,7 @@ main {
 
 .todo-container input[type="checkbox"] {
   margin-right: 10px;
+  cursor: pointer;
 }
 
 .todo-container .divide {
@@ -120,6 +108,30 @@ main {
   height: 0.2px;
   background: #c0c0c0;
 }
+
+/* Handle input text dynamics */
+.highlight-input {
+  background: #fffeca;
+  margin: 0;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.highlight-input input:focus {
+  background: #fffeca;
+}
+
+.todo-container :checked + input {
+  text-decoration: line-through;
+  color: #c0c0c0;
+}
+
+.todo-container :checked + input:focus {
+  text-decoration: initial;
+  color: initial;
+}
+
+/* Handle input text dynamics */
 
 .enter {
   height: 10px;
@@ -134,6 +146,11 @@ main {
   color: #c0c0c0;
 }
 
+.delete {
+  color: #c0c0c0;
+  cursor: pointer;
+}
+
 .reorder {
   font-size: 16px;
   color: #c0c0c0;
@@ -142,7 +159,8 @@ main {
 
 .enter:hover,
 #refresh:hover,
-.reorder:hover {
+.reorder:hover,
+.delete:hover {
   color: var(--grey);
 }
 
@@ -151,4 +169,15 @@ main {
   padding: 15px;
   cursor: pointer;
   background: var(--milky);
+}
+
+#clear-completed:hover {
+  font-weight: 600;
+}
+
+.rotate {
+  transform: rotate(360deg);
+  transition: transform 1s;
+  -webkit-transform: rotate(360deg);
+  -webkit-transition: -webkit-transform 1s;
 }
