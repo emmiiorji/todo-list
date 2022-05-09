@@ -174,3 +174,10 @@ main {
 #clear-completed:hover {
   font-weight: 600;
 }
+
+.rotate {
+  transform: rotate(360deg);
+  transition: transform 1s;
+  -webkit-transform: rotate(360deg);
+  -webkit-transition: -webkit-transform 1s;
+}
