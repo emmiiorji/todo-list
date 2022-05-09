@@ -14,7 +14,7 @@ Here's how it looks:
 - Javascript
 - Webpack
 
-## Live Demo (if available)
+## Live Demo
 
 [Live Demo Link](https://emmiiorji.github.io/todo-list/)
 
