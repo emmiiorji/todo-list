@@ -109,6 +109,7 @@ const addOneTimeListeners = () => {
       e.target.classList.remove('rotate');
     }, 500);
     renderLists();
+    addRefreshingListeners();
   };
 };
 
