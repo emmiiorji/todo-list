@@ -11,7 +11,6 @@ class TaskManager {
     const task = {
       description: value,
       completed: false,
-      // index: tasks.todoData.length + 1,
     };
     tasks.todoData = this.writeLocalCollection(tasks.storageKey, task);
   }
