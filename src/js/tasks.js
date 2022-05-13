@@ -1,10 +1,9 @@
-// eslint-disable-next-line import/no-cycle
-import taskManager from './taskManager.js';
+import readWriteLocal from './readWriteLocal.js';
 
 class Tasks {
   constructor() {
     this.storageKey = 'todoData';
-    this.todoData = taskManager.readLocalCollection(this.storageKey);
+    this.todoData = readWriteLocal.readLocalCollection(this.storageKey);
   }
 }
 
