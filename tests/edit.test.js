@@ -109,4 +109,20 @@ describe('Edit and Update Status', () => {
     expect(newStorage.length).toBe(countRendered);
     expect(newStorage[taskIndex].completed).toBe(!currentStatus);
   });
+
+  test('All completed are cleared', () => {
+    const countRendered = todoCollection.childNodes.length;
+    const checkedCount = Array.from(todoCollection.querySelectorAll('.status'))
+      .filter((status) => status.checked === true).length;
+    const uncompleted = JSON.parse(localStorage.getItem(tasks.storageKey))
+      .filter((task) => task.completed === false);
+
+    clearCompleted.click();
+
+    const newStorage = JSON.parse(localStorage.getItem(tasks.storageKey));
+
+    expect(newStorage).toEqual(uncompleted);
+    expect(todoCollection.childNodes.length).toBe(countRendered - checkedCount);
+    expect(newStorage.length).toBe(countRendered - checkedCount);
+  });
 });
