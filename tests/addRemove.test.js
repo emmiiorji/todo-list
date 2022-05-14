@@ -2,8 +2,7 @@
 * @jest-environment jsdom
 */
 
-/* eslint-disable global-require */
-/* eslint-disable import/first */
+import tasks from '../src/js/tasks.js';
 
 document.body.innerHTML = `<article class="todo-container">
                             <header class="todo-header">
@@ -25,8 +24,6 @@ document.body.innerHTML = `<article class="todo-container">
                             <input type="button" id="clear-completed" value="Clear all Completed">
                           </article>`;
 require('../src/js/index.js');
-
-import tasks from '../src/js/tasks.js';
 
 const enterTodo = document.getElementById('enter-todo');
 const todoCollection = document.getElementById('todo-collection');
