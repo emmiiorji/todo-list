@@ -65,4 +65,16 @@ describe('Adding task', () => {
     expect(todoCollection.querySelectorAll('.todo')[countRendered]).toBe(undefined);
     expect(JSON.parse(localStorage.getItem(tasks.storageKey)).length).toBe(countRendered);
   });
+
+  test('Task is deleted', () => {
+    const countRendered = todoCollection.childNodes.length;
+    const taskIndex = Math.floor(Math.random() * countRendered);// Randomly choose element to delete
+    const toDelete = todoCollection.querySelector(`#entry_${taskIndex}`);
+
+    toDelete.querySelector('.delete').dispatchEvent(new MouseEvent('mousedown'));
+
+    expect(todoCollection.childNodes.length).toBe(countRendered - 1);
+    expect(todoCollection.querySelectorAll('.todo')[countRendered - 1]).toBe(undefined);
+    expect(JSON.parse(localStorage.getItem(tasks.storageKey)).length).toBe(countRendered - 1);
+  });
 });
