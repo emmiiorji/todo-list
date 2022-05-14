@@ -24,9 +24,9 @@ document.body.innerHTML = `<article class="todo-container">
                             
                             <input type="button" id="clear-completed" value="Clear all Completed">
                           </article>`;
-require('../js/index.js');
+require('../src/js/index.js');
 
-import tasks from '../js/tasks.js';
+import tasks from '../src/js/tasks.js';
 
 const enterTodo = document.getElementById('enter-todo');
 const todoCollection = document.getElementById('todo-collection');
@@ -38,6 +38,17 @@ describe('Adding task', () => {
     const countRendered = todoCollection.childNodes.length;
 
     enterTodo.dispatchEvent(new KeyboardEvent('keyup', { key: 'Enter' }));
+
+    expect(todoCollection.childNodes.length).toBe(countRendered + 1);
+    expect(todoCollection.querySelectorAll('.todo')[countRendered].value).toBe(description);
+    expect(JSON.parse(localStorage.getItem(tasks.storageKey)).length).toBe(countRendered + 1);
+  });
+
+  test('Task is added on enter-button click', (description = 'Visit the gym again') => {
+    enterTodo.value = description;
+    const countRendered = todoCollection.childNodes.length;
+
+    enterBu.click();
 
     expect(todoCollection.childNodes.length).toBe(countRendered + 1);
     expect(todoCollection.querySelectorAll('.todo')[countRendered].value).toBe(description);
