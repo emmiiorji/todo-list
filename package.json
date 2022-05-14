@@ -5,7 +5,7 @@
   "private": true,
   "homepage": "https://emmiiorji.github.io/todo-list",
   "scripts": {
-    "test": "jest --coverage",
+    "test": "jest",
     "build": "webpack",
     "dev": "webpack serve --open",
     "predeploy": "npm run build",
