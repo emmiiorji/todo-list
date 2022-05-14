@@ -5,7 +5,7 @@
   "private": true,
   "homepage": "https://emmiiorji.github.io/todo-list",
   "scripts": {
-    "test": "jest",
+    "test": "jest --coverage",
     "build": "webpack",
     "dev": "webpack serve --open",
     "predeploy": "npm run build",
@@ -22,8 +22,11 @@
     "url": "https://github.com/emmiiorji/todo-list/issues"
   },
   "devDependencies": {
+    "@babel/core": "^7.17.10",
     "@babel/plugin-transform-modules-commonjs": "^7.17.9",
+    "@babel/preset-env": "^7.17.10",
     "babel-eslint": "^10.1.0",
+    "babel-jest": "^28.1.0",
     "css-loader": "^6.7.1",
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
@@ -43,5 +46,11 @@
   },
   "dependencies": {
     "gh-pages": "^3.2.3"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
+    }
   }
 }
