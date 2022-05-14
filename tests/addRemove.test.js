@@ -54,4 +54,15 @@ describe('Adding task', () => {
     expect(todoCollection.querySelectorAll('.todo')[countRendered].value).toBe(description);
     expect(JSON.parse(localStorage.getItem(tasks.storageKey)).length).toBe(countRendered + 1);
   });
+
+  test('String that is empty when trimmed is not added', (description = ' ') => {
+    enterTodo.value = description;
+    const countRendered = todoCollection.childNodes.length;
+
+    enterTodo.dispatchEvent(new KeyboardEvent('keyup', { key: 'Enter' }));
+
+    expect(todoCollection.childNodes.length).toBe(countRendered);
+    expect(todoCollection.querySelectorAll('.todo')[countRendered]).toBe(undefined);
+    expect(JSON.parse(localStorage.getItem(tasks.storageKey)).length).toBe(countRendered);
+  });
 });
