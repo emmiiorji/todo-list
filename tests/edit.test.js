@@ -77,5 +77,36 @@ describe('Edit and Update Status', () => {
     expect(todoCollection.querySelectorAll('.todo')[taskIndex].value).toBe(description);
   });
 
-  
+  test('Task is marked complete', (taskIndex = 2) => {
+    const countRendered = todoCollection.childNodes.length;
+    const toEdit = todoCollection.querySelector(`#entry_${taskIndex}`);
+
+    const taskCheckbox = toEdit.querySelector('.status');
+    const currentStatus = taskCheckbox.checked;
+
+    taskCheckbox.checked = !currentStatus;
+    taskCheckbox.dispatchEvent(new Event('change')); // Invert the check status
+
+    const newStorage = JSON.parse(localStorage.getItem(tasks.storageKey));
+    expect(todoCollection.childNodes.length).toBe(countRendered);
+    expect(newStorage.length).toBe(countRendered);
+    expect(newStorage[taskIndex].completed)
+      .toBe(!currentStatus);
+  });
+
+  test('Another task is marked complete', (taskIndex = 0) => {
+    const countRendered = todoCollection.childNodes.length;
+    const toEdit = todoCollection.querySelector(`#entry_${taskIndex}`);
+
+    const taskCheckbox = toEdit.querySelector('.status');
+    const currentStatus = taskCheckbox.checked;
+
+    taskCheckbox.checked = !currentStatus;
+    taskCheckbox.dispatchEvent(new Event('change')); // Invert the check status
+
+    const newStorage = JSON.parse(localStorage.getItem(tasks.storageKey));
+    expect(todoCollection.childNodes.length).toBe(countRendered);
+    expect(newStorage.length).toBe(countRendered);
+    expect(newStorage[taskIndex].completed).toBe(!currentStatus);
+  });
 });
