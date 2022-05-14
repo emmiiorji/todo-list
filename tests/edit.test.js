@@ -28,6 +28,7 @@ require('../src/js/index.js');
 const enterTodo = document.getElementById('enter-todo');
 const todoCollection = document.getElementById('todo-collection');
 const clearCompleted = document.getElementById('clear-completed');
+const refreshBu = document.getElementById('refresh');
 
 describe('Edit and Update Status', () => {
   beforeAll(() => {
@@ -121,5 +122,14 @@ describe('Edit and Update Status', () => {
     expect(newStorage).toEqual(uncompleted);
     expect(todoCollection.childNodes.length).toBe(countRendered - checkedCount);
     expect(newStorage.length).toBe(countRendered - checkedCount);
+  });
+
+  test('Refresh button', () => {
+    refreshBu.click();
+
+    const newStorage = JSON.parse(localStorage.getItem(tasks.storageKey));
+
+    expect(newStorage.length).toBe(tasks.todoData.length);
+    expect(newStorage).toEqual(tasks.todoData);
   });
 });

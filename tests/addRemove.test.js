@@ -63,6 +63,17 @@ describe('Adding task', () => {
     expect(JSON.parse(localStorage.getItem(tasks.storageKey)).length).toBe(countRendered);
   });
 
+  test('When keyup and key not Enter, task not added', (description = 'Test again') => {
+    enterTodo.value = description;
+    const countRendered = todoCollection.childNodes.length;
+
+    enterTodo.dispatchEvent(new KeyboardEvent('keyup', { key: 'b' }));
+
+    expect(todoCollection.childNodes.length).toBe(countRendered);
+    expect(todoCollection.querySelectorAll('.todo')[countRendered]).toBe(undefined);
+    expect(JSON.parse(localStorage.getItem(tasks.storageKey)).length).toBe(countRendered);
+  });
+
   test('Task is deleted', () => {
     const countRendered = todoCollection.childNodes.length;
     const taskIndex = Math.floor(Math.random() * countRendered);// Randomly choose element to delete
