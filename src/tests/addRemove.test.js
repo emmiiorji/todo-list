@@ -31,3 +31,16 @@ import tasks from '../js/tasks.js';
 const enterTodo = document.getElementById('enter-todo');
 const todoCollection = document.getElementById('todo-collection');
 const enterBu = document.querySelector('.enter');
+
+describe('Adding task', () => {
+  test('Task is added on enter press', (description = 'Visit the gym') => {
+    enterTodo.value = description;
+    const countRendered = todoCollection.childNodes.length;
+
+    enterTodo.dispatchEvent(new KeyboardEvent('keyup', { key: 'Enter' }));
+
+    expect(todoCollection.childNodes.length).toBe(countRendered + 1);
+    expect(todoCollection.querySelectorAll('.todo')[countRendered].value).toBe(description);
+    expect(JSON.parse(localStorage.getItem(tasks.storageKey)).length).toBe(countRendered + 1);
+  });
+});
