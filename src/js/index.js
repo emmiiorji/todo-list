@@ -101,6 +101,7 @@ const addOneTimeListeners = () => {
     const taskIndexes = completedTasks.map((completedTask) => Number(completedTask.id.split('_')[1]));
     taskManager.clearCompletedTasks(taskIndexes);
     renderLists();
+    addRefreshingListeners();
   });
 
   refreshBu.onclick = (e) => {
