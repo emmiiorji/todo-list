@@ -31,3 +31,33 @@ import tasks from '../src/js/tasks.js';
 const enterTodo = document.getElementById('enter-todo');
 const todoCollection = document.getElementById('todo-collection');
 const clearCompleted = document.getElementById('clear-completed');
+
+describe('Edit and Update Status', () => {
+    beforeAll(() => {
+      // Create some number of tasks
+      const tasksCount = 5;
+      [...Array(tasksCount).keys()].forEach((taskIndex) => {
+        enterTodo.value = `I will do task ${taskIndex}`;
+        enterTodo.dispatchEvent(new KeyboardEvent('keyup', { key: 'Enter' }));
+      });
+    });
+  
+    test('Task is edited on blur', () => {
+      const countRendered = todoCollection.childNodes.length;
+      const taskIndex = Math.floor(Math.random() * countRendered);// Randomly choose task to edit
+      const toEdit = todoCollection.querySelector(`#entry_${taskIndex}`);
+      const description = `I will do task ${taskIndex}`;
+  
+      const descInput = toEdit.querySelector('.todo');
+      descInput.value = description;
+  
+      descInput.blur();
+  
+      const newStorage = JSON.parse(localStorage.getItem(tasks.storageKey));
+      expect(newStorage.length).toBe(countRendered);
+      expect(newStorage[taskIndex].description).toBe(description);
+      expect(todoCollection.childNodes.length).toBe(countRendered);
+      expect(todoCollection.querySelectorAll('.todo')[taskIndex].value).toBe(description);
+    });
+  
+  });
