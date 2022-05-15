@@ -8,6 +8,11 @@ Here's how it looks:
 https://user-images.githubusercontent.com/20554583/167466539-6bf7117c-1077-4840-8d68-a01b9cb5ef78.mp4
 
 
+Test is done using the Jest library. Here's a screenshot of its coverage:
+
+![image](https://user-images.githubusercontent.com/20554583/168454656-5ca7d901-5d4c-459b-b4bf-39592b61617f.png)
+
+
 
 ## Built With
 
